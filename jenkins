@@ -1,0 +1,23 @@
+pipeline {
+   agent any    
+    tools {
+      terraform 'Terraform'
+    }
+    stages{
+        stage ('source checkout'){
+            steps{
+                git 'https://github.com/javahometech/terraform-app'
+            }
+        }
+        stage ('Terrafrom init'){
+            steps{
+                sh 'terraform init'
+            }
+        }
+        stage ('Terffrom apply'){
+            steps{
+                sh 'terraform apply --auto-approve'
+            }
+        }
+    }
+}
